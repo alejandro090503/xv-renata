@@ -78,19 +78,29 @@ body{
   padding:0 28px 62px;
   text-align:center;
 }
-.hero-eyebrow{
-  display:inline-block;
-  font-family:'Cormorant Garamond',serif;font-weight:500;
-  font-size:15px;letter-spacing:6px;text-transform:uppercase;
+/* hero-eyebrow oculto — fecha movida a sección propia */
+.hero-eyebrow{display:none;}
+
+/* ── FECHA HERO ── */
+.fecha-sec{
+  padding:32px 26px 10px;
+  text-align:center;
+}
+.fecha-line{
+  display:flex;align-items:center;justify-content:center;gap:18px;
+}
+.fecha-line .fl-bar{
+  flex:1;max-width:60px;height:1px;
+  background:linear-gradient(to right,transparent,var(--accent));
+  opacity:.5;
+}
+.fecha-line .fl-bar.right{
+  background:linear-gradient(to left,transparent,var(--accent));
+}
+.fecha-txt{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:16px;letter-spacing:7px;text-transform:uppercase;
   color:var(--dark);
-  background:rgba(240,244,250,.82);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  border:1px solid rgba(74,122,181,.25);
-  border-radius:30px;
-  padding:8px 22px;
-  margin-bottom:14px;
-  transform:translateY(20px);opacity:0;
 }
 .hero-name{
   font-family:'Great Vibes',cursive;font-size:100px;line-height:.95;
@@ -409,7 +419,6 @@ footer .fd{
     <div class="hero-bg"></div>
     <div class="hero-veil"></div>
     <div class="hero-bottom">
-      <div class="hero-eyebrow" id="hEy">07 · Junio · MMXXVII</div>
       <h1 class="hero-name" id="hNm">Renata</h1>
       <div class="hero-sub" id="hSb">
         <span class="xv-num">XV</span>
@@ -430,6 +439,15 @@ footer .fd{
       <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#4A7AB5" opacity=".4" transform="rotate(6 108 19)"/>
       <circle cx="65" cy="15" r="3" fill="#4A7AB5" opacity=".55"/>
     </svg>
+  </div>
+
+  <!-- FECHA -->
+  <div class="fecha-sec rv">
+    <div class="fecha-line">
+      <div class="fl-bar"></div>
+      <div class="fecha-txt">07 · Junio · MMXXVII</div>
+      <div class="fl-bar right"></div>
+    </div>
   </div>
 
   <!-- COUNTDOWN -->
@@ -775,8 +793,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ── HERO ENTRANCE ── */
 function launchPage(){
   gsap.timeline({defaults:{ease:'power2.out'}})
-    .to('#hEy',{opacity:1,y:0,duration:1.4})
-    .to('#hNm',{opacity:1,y:0,duration:1.8,ease:'power3.out'},'-=1')
+    .to('#hNm',{opacity:1,y:0,duration:1.8,ease:'power3.out'})
     .to('#hSb',{opacity:1,y:0,duration:1.4},'-=1');
   initPetals();
   initScrollReveal();
