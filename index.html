@@ -22,7 +22,7 @@ body{
 }
 
 /* ── WRAP ── */
-.wrap{max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
+.wrap{max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;z-index:1;}
 
 /* ── LOADER ── */
 #loader{
@@ -43,7 +43,7 @@ body{
 
 /* ── PÉTALOS GLOBALES ── */
 #petals{
-  position:fixed;inset:0;pointer-events:none;z-index:996;overflow:hidden;
+  position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
 }
 .petal{
   position:absolute;top:-30px;
