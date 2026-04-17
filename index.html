@@ -75,13 +75,21 @@ body{
 .hero-bottom{
   position:relative;z-index:3;
   margin-top:auto;
-  padding:0 28px 54px;
+  padding:0 28px 62px;
   text-align:center;
 }
 .hero-eyebrow{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:13px;letter-spacing:5px;text-transform:uppercase;
-  color:var(--accent);margin-bottom:6px;
+  display:inline-block;
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:15px;letter-spacing:6px;text-transform:uppercase;
+  color:var(--dark);
+  background:rgba(240,244,250,.82);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(74,122,181,.25);
+  border-radius:30px;
+  padding:8px 22px;
+  margin-bottom:14px;
   transform:translateY(20px);opacity:0;
 }
 .hero-name{
