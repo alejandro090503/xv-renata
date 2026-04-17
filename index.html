@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Renata · Mis XV Años · 07 Junio 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{overflow-x:hidden;}
+:root{
+  --bg:#FAF7F2;
+  --accent:#9E7B65;
+  --accent-dark:#7A5B48;
+  --text:#2C1F18;
+  --surface:#F2EBE0;
+  --rose:#E8B4B8;
+  --peach:#F2C4A0;
+  --lavender:#C4B5D4;
+  --mint:#B5D4C4;
+}
+body{
+  font-family:'Lato',sans-serif;
+  font-weight:300;
+  font-size:13px;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+.wrap{max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
+
+/* LOADER */
+#loader{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 1s ease;
+}
+#loader.gone{opacity:0;pointer-events:none;}
+#loader .name{
+  font-family:'Great Vibes',cursive;
+  font-size:72px;color:var(--accent);
+  display:flex;gap:2px;
+}
+#loader .name span{opacity:0;display:inline-block;transform:translateY(20px);}
+
+/* HERO */
+.hero{
+  position:relative;height:100vh;min-height:640px;max-height:900px;
+  overflow:hidden;background:var(--bg);
+}
+.hero-img{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=860&q=80');
+  background-size:cover;background-position:center;
+  height:70%;
+}
+.hero-overlay{
+  position:absolute;left:0;right:0;top:55%;bottom:0;
+  background:linear-gradient(180deg,
+    rgba(250,247,242,0) 0%,
+    rgba(250,247,242,0.6) 35%,
+    rgba(250,247,242,0.95) 70%,
+    var(--bg) 100%);
+}
+.hero-content{
+  position:absolute;left:0;right:0;bottom:60px;
+  text-align:center;padding:0 30px;
+  z-index:3;
+}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:var(--accent);
+  margin-bottom:6px;
+  opacity:0;
+}
+.hero-name{
+  font-family:'Great Vibes',cursive;
+  font-size:96px;
+  color:var(--accent-dark);
+  line-height:1;
+  margin-bottom:4px;
+  opacity:0;
+}
+.hero-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:18px;
+  color:var(--text);
+  letter-spacing:2px;
+  opacity:0;
+}
+.date-badge{
+  position:absolute;
+  right:20px;bottom:20px;
+  width:110px;height:110px;
+  border:1px solid var(--accent);
+  border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(250,247,242,0.85);
+  backdrop-filter:blur(4px);
+  z-index:4;
+  opacity:0;
+}
+.date-badge .d{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
+.date-badge .n{font-family:'Great Vibes',cursive;font-size:32px;color:var(--accent-dark);line-height:1;margin:2px 0;}
+.date-badge .y{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--accent);}
+
+/* PÉTALOS */
+.petals{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2;}
+.petal{
+  position:absolute;
+  width:10px;height:14px;
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity:0.65;
+  top:-20px;
+}
+
+/* SECTION */
+section{padding:70px 28px;position:relative;}
+.eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:var(--accent);
+  text-align:center;
+  margin-bottom:10px;
+}
+.title{
+  font-family:'Great Vibes',cursive;
+  font-size:48px;
+  color:var(--accent-dark);
+  text-align:center;
+  line-height:1.1;
+  margin-bottom:30px;
+}
+
+/* ORNAMENT */
+.ornament{
+  display:flex;justify-content:center;align-items:center;
+  margin:0 auto;padding:16px 0;
+}
+.ornament svg{width:120px;height:30px;opacity:0.5;}
+
+/* COUNTDOWN */
+.countdown{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:10px;margin-top:20px;
+}
+.cd-box{
+  background:#fff;border-radius:12px;
+  padding:18px 6px;text-align:center;
+  box-shadow:0 4px 32px rgba(0,0,0,0.06);
+}
+.cd-box .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:38px;color:var(--accent-dark);line-height:1;
+  font-weight:500;
+}
+.cd-box .lbl{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:11px;text-transform:uppercase;letter-spacing:2px;
+  color:var(--accent);margin-top:6px;
+}
+
+/* CARD UBICACIÓN */
+.loc-card{
+  background:rgba(255,255,255,0.9);
+  border-radius:16px;
+  padding:26px 22px;
+  box-shadow:0 4px 32px rgba(0,0,0,0.06);
+  margin-bottom:20px;
+  text-align:center;
+}
+.loc-card h3{
+  font-family:'Great Vibes',cursive;
+  font-size:34px;color:var(--accent-dark);
+  margin-bottom:4px;
+}
+.loc-card .sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;
+}
+.loc-card p{margin:4px 0;font-size:13px;}
+.loc-card .hour{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;color:var(--accent-dark);margin-top:8px;letter-spacing:2px;
+}
+.btn{
+  display:inline-block;
+  margin-top:16px;padding:12px 28px;
+  background:var(--accent);color:#fff;
+  border-radius:30px;
+  font-family:'Cormorant Garamond',serif;
+  text-transform:uppercase;letter-spacing:3px;font-size:11px;
+  text-decoration:none;
+  transition:all .3s;border:none;cursor:pointer;
+}
+.btn:hover{background:var(--accent-dark);}
+.btn-outline{background:transparent;color:var(--accent-dark);border:1px solid var(--accent);}
+.btn-full{display:block;width:100%;text-align:center;}
+
+/* CALENDAR */
+.cal-wrap{text-align:center;}
+
+/* ITINERARIO */
+.timeline{position:relative;padding-left:36px;margin-top:10px;}
+.timeline::before{
+  content:'';position:absolute;left:10px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--accent),transparent);
+  opacity:0.5;
+}
+.t-item{position:relative;margin-bottom:26px;}
+.t-item::before{
+  content:'';position:absolute;left:-32px;top:4px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--accent);
+}
+.t-item .time{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;color:var(--accent-dark);
+  letter-spacing:2px;
+}
+.t-item .evt{
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text);margin-top:2px;
+}
+
+/* DRESS CODE */
+.dc-note{text-align:center;margin-bottom:20px;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--accent-dark);letter-spacing:3px;text-transform:uppercase;}
+.swatches{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px;}
+.sw{text-align:center;}
+.sw .dot{
+  width:64px;height:64px;border-radius:50%;
+  box-shadow:0 6px 20px rgba(0,0,0,0.10);
+  margin:0 auto 8px;
+  border:2px solid rgba(255,255,255,0.6);
+}
+.sw .lbl{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:11px;letter-spacing:2px;color:var(--accent);
+  text-transform:uppercase;
+}
+
+/* FAMILIA */
+.fam{display:flex;flex-direction:column;gap:24px;text-align:center;}
+.fam-group .role{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;
+}
+.fam-group .names{
+  font-family:'Cormorant Garamond',serif;font-size:18px;
+  color:var(--accent-dark);line-height:1.6;
+}
+.flor-sep{text-align:center;color:var(--accent);opacity:0.5;font-size:14px;letter-spacing:8px;}
+
+/* GALERÍA */
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.gallery img{
+  width:100%;height:160px;object-fit:cover;
+  border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.gallery img:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.12);}
+
+/* RSVP */
+.rsvp-card{
+  background:rgba(255,255,255,0.9);
+  border-radius:16px;padding:26px 22px;
+  box-shadow:0 4px 32px rgba(0,0,0,0.06);
+}
+.rsvp-card label{
+  display:block;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);margin:12px 0 6px;
+}
+.rsvp-card input,.rsvp-card select,.rsvp-card textarea{
+  width:100%;padding:12px 14px;
+  border:1px solid rgba(158,123,101,0.3);
+  border-radius:10px;background:#fff;
+  font-family:'Lato',sans-serif;font-size:13px;color:var(--text);
+  outline:none;transition:border-color .3s;
+}
+.rsvp-card input:focus,.rsvp-card select:focus,.rsvp-card textarea:focus{border-color:var(--accent);}
+.btn-whats{
+  background:#25D366;color:#fff;width:100%;
+  margin-top:18px;padding:14px;
+  border-radius:30px;border:none;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;
+  text-transform:uppercase;letter-spacing:3px;font-size:12px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+
+/* MÚSICA */
+.music-btn{
+  position:fixed;bottom:22px;right:22px;
+  width:54px;height:54px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(158,123,101,0.5);
+  z-index:999;cursor:pointer;border:none;
+  animation:pulse 2.4s infinite ease-out;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(158,123,101,0.5);}
+  70%{box-shadow:0 0 0 18px rgba(158,123,101,0);}
+  100%{box-shadow:0 0 0 0 rgba(158,123,101,0);}
+}
+.music-btn svg{width:22px;height:22px;}
+
+/* FOOTER */
+footer{padding:40px 20px;text-align:center;}
+footer .name-f{font-family:'Great Vibes',cursive;font-size:42px;color:var(--accent-dark);}
+footer .date-f{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-top:4px;}
+
+.center{text-align:center;}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="name" id="loaderName"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="petals" id="petals"></div>
+    <div class="hero-content">
+      <div class="hero-sub">Mis XV Años</div>
+      <h1 class="hero-name">Renata</h1>
+      <div class="hero-subtitle">Sus XV Años</div>
+    </div>
+    <div class="date-badge">
+      <div class="d">07 · Junio</div>
+      <div class="n">MMXXVII</div>
+      <div class="y">2027</div>
+    </div>
+  </section>
+
+  <!-- ORNAMENT -->
+  <div class="ornament">
+    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
+      <path d="M5 15 Q30 5, 60 15 T115 15"/>
+      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+    </svg>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <section class="sec reveal">
+    <div class="eyebrow">Cuenta Regresiva</div>
+    <h2 class="title">Faltan</h2>
+    <div class="countdown">
+      <div class="cd-box"><div class="num" id="cdD">00</div><div class="lbl">Días</div></div>
+      <div class="cd-box"><div class="num" id="cdH">00</div><div class="lbl">Horas</div></div>
+      <div class="cd-box"><div class="num" id="cdM">00</div><div class="lbl">Minutos</div></div>
+      <div class="cd-box"><div class="num" id="cdS">00</div><div class="lbl">Segundos</div></div>
+    </div>
+  </section>
+
+  <div class="ornament">
+    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
+      <path d="M5 15 Q30 5, 60 15 T115 15"/>
+      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+    </svg>
+  </div>
+
+  <!-- UBICACIÓN -->
+  <section class="sec reveal">
+    <div class="eyebrow">Cuándo y Dónde</div>
+    <h2 class="title">Ubicación</h2>
+
+    <div class="loc-card">
+      <h3>Ceremonia</h3>
+      <div class="sub">Misa de Acción de Gracias</div>
+      <p><strong>Parroquia San Pedro Apóstol</strong></p>
+      <p>Av. Eugenio Garza Sada 3000, Monterrey</p>
+      <div class="hour">17:00 hrs</div>
+      <a class="btn" href="https://maps.app.goo.gl/sanpedro" target="_blank">Cómo llegar</a>
+    </div>
+
+    <div class="loc-card">
+      <h3>Recepción</h3>
+      <div class="sub">Cena y Fiesta</div>
+      <p><strong>Hacienda Los Morales</strong></p>
+      <p>Río Lerma 222, Monterrey</p>
+      <div class="hour">19:30 hrs</div>
+      <a class="btn" href="https://maps.app.goo.gl/losmorales" target="_blank">Cómo llegar</a>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="sec reveal cal-wrap">
+    <div class="eyebrow">No lo olvides</div>
+    <h2 class="title">Guárdalo</h2>
+    <p style="margin-bottom:10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;">Agrega el evento a tu calendario</p>
+    <a class="btn" id="gcal" href="#" target="_blank">
+      Añadir a Google Calendar
+    </a>
+  </section>
+
+  <div class="ornament">
+    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
+      <path d="M5 15 Q30 5, 60 15 T115 15"/>
+      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+    </svg>
+  </div>
+
+  <!-- ITINERARIO -->
+  <section class="sec reveal">
+    <div class="eyebrow">Programa</div>
+    <h2 class="title">Itinerario</h2>
+    <div class="timeline">
+      <div class="t-item"><div class="time">16:30</div><div class="evt">Recepción de invitados</div></div>
+      <div class="t-item"><div class="time">17:00</div><div class="evt">Misa de acción de gracias</div></div>
+      <div class="t-item"><div class="time">19:30</div><div class="evt">Vals de honor</div></div>
+      <div class="t-item"><div class="time">20:00</div><div class="evt">Cena y brindis</div></div>
+      <div class="t-item"><div class="time">21:30</div><div class="evt">Fiesta y sorpresas</div></div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="sec reveal">
+    <div class="eyebrow">Etiqueta</div>
+    <h2 class="title">Dress Code</h2>
+    <div class="dc-note">Formal · Colores pastel</div>
+    <div class="swatches">
+      <div class="sw"><div class="dot" style="background:#E8B4B8"></div><div class="lbl">Rosa palo</div></div>
+      <div class="sw"><div class="dot" style="background:#F2C4A0"></div><div class="lbl">Durazno</div></div>
+      <div class="sw"><div class="dot" style="background:#C4B5D4"></div><div class="lbl">Lavanda</div></div>
+      <div class="sw"><div class="dot" style="background:#B5D4C4"></div><div class="lbl">Menta</div></div>
+    </div>
+  </section>
+
+  <div class="ornament">
+    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
+      <path d="M5 15 Q30 5, 60 15 T115 15"/>
+      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+    </svg>
+  </div>
+
+  <!-- FAMILIA -->
+  <section class="sec reveal">
+    <div class="eyebrow">Con la bendición de</div>
+    <h2 class="title">Mi Familia</h2>
+    <div class="fam">
+      <div class="fam-group">
+        <div class="role">Mis Padres</div>
+        <div class="names">Alejandro Morales<br>&<br>Gabriela Ramos de Morales</div>
+      </div>
+      <div class="flor-sep">❦ ❦ ❦</div>
+      <div class="fam-group">
+        <div class="role">Padrinos de Corona</div>
+        <div class="names">Roberto Torres<br>&<br>Daniela Vega</div>
+      </div>
+      <div class="flor-sep">❦ ❦ ❦</div>
+      <div class="fam-group">
+        <div class="role">Padrinos de Vals</div>
+        <div class="names">Marco Salinas<br>&<br>Patricia Herrera</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament">
+    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
+      <path d="M5 15 Q30 5, 60 15 T115 15"/>
+      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
+      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+    </svg>
+  </div>
+
+  <!-- GALERÍA -->
+  <section class="sec reveal">
+    <div class="eyebrow">Recuerdos</div>
+    <h2 class="title">Galería</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="foto 1">
+      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=70" alt="foto 2">
+      <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=70" alt="foto 3">
+      <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=70" alt="foto 4">
+      <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=70" alt="foto 5" style="grid-column:1/-1;height:220px;">
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="sec reveal">
+    <div class="eyebrow">Confirma tu asistencia</div>
+    <h2 class="title">R.S.V.P.</h2>
+    <div class="rsvp-card">
+      <label>Tu nombre</label>
+      <input type="text" id="rName" placeholder="Nombre completo">
+      <label>¿Asistirás?</label>
+      <select id="rAssist">
+        <option value="Sí, con gusto asistiré">Sí, con gusto asistiré</option>
+        <option value="Lamento no poder asistir">Lamento no poder asistir</option>
+      </select>
+      <label>Número de invitados</label>
+      <input type="number" id="rGuests" min="1" max="5" value="1">
+      <label>Mensaje para Renata</label>
+      <textarea id="rMsg" rows="3" placeholder="Un mensaje de cariño..."></textarea>
+      <button class="btn-whats" id="rsvpBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413"/></svg>
+        Confirmar por WhatsApp
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="name-f">Renata</div>
+    <div class="date-f">07 · Junio · MMXXVII</div>
+  </footer>
+
+</div>
+
+<!-- MÚSICA -->
+<button class="music-btn" id="musicBtn" aria-label="Reproducir música">
+  <svg viewBox="0 0 24 24" fill="#fff" id="musicIcon"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+</button>
+<audio id="bgMusic" loop>
+  <source src="https://audio.jukehost.co.uk/9hKrAnJzrCzXkHc1qMfUuDqxIgTYPvYE" type="audio/mpeg">
+</audio>
+
+<script>
+// LOADER
+(function(){
+  const el=document.getElementById('loaderName');
+  const name='Renata';
+  name.split('').forEach(l=>{const s=document.createElement('span');s.textContent=l;el.appendChild(s);});
+  const spans=el.querySelectorAll('span');
+  gsap.to(spans,{opacity:1,y:0,duration:0.6,stagger:0.15,ease:'power2.out',onComplete:()=>{
+    setTimeout(()=>{
+      document.getElementById('loader').classList.add('gone');
+      setTimeout(()=>document.getElementById('loader').remove(),1100);
+      initIntro();
+    },700);
+  }});
+})();
+
+function initIntro(){
+  gsap.to('.hero-sub',{opacity:1,y:0,duration:1,delay:0.1,ease:'power2.out'});
+  gsap.from('.hero-name',{opacity:0,y:20,duration:1.2,delay:0.3,ease:'power2.out'});
+  gsap.to('.hero-name',{opacity:1,duration:1.2,delay:0.3});
+  gsap.to('.hero-subtitle',{opacity:1,duration:1,delay:0.9});
+  gsap.to('.date-badge',{opacity:1,scale:1,duration:1,delay:1.1,ease:'back.out(1.6)'});
+  spawnPetals();
+}
+
+// PÉTALOS
+function spawnPetals(){
+  const container=document.getElementById('petals');
+  const colors=['#E8B4B8','#F2C4A0','#C4B5D4','#B5D4C4','#FAD4D6'];
+  for(let i=0;i<15;i++){
+    const p=document.createElement('div');
+    p.className='petal';
+    p.style.background=colors[i%colors.length];
+    p.style.left=Math.random()*100+'%';
+    container.appendChild(p);
+    animPetal(p);
+  }
+}
+function animPetal(p){
+  const dur=8+Math.random()*8;
+  const rot=360+Math.random()*360;
+  const driftX=(Math.random()*120)-60;
+  gsap.set(p,{y:-20,rotation:Math.random()*360,opacity:0.65});
+  gsap.to(p,{
+    y:window.innerHeight+40,
+    x:driftX,
+    rotation:'+='+rot,
+    duration:dur,
+    ease:'none',
+    onComplete:()=>{
+      gsap.set(p,{x:0,left:Math.random()*100+'%'});
+      animPetal(p);
+    }
+  });
+}
+
+// COUNTDOWN
+(function(){
+  const target=new Date('2027-06-07T17:00:00-06:00').getTime();
+  function upd(){
+    const now=Date.now();const diff=target-now;
+    if(diff<=0){['cdD','cdH','cdM','cdS'].forEach(id=>document.getElementById(id).textContent='00');return;}
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor(diff%86400000/3600000);
+    const m=Math.floor(diff%3600000/60000);
+    const s=Math.floor(diff%60000/1000);
+    document.getElementById('cdD').textContent=String(d).padStart(2,'0');
+    document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+  }
+  upd();setInterval(upd,1000);
+})();
+
+// REVEAL
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.reveal').forEach(sec=>{
+  gsap.from(sec,{y:30,opacity:0,duration:0.9,ease:'power2.out',
+    scrollTrigger:{trigger:sec,start:'top 85%'}});
+});
+
+// GOOGLE CALENDAR
+(function(){
+  const title=encodeURIComponent('XV Años de Renata');
+  const details=encodeURIComponent('Ceremonia: Parroquia San Pedro Apóstol 17:00 hrs. Recepción: Hacienda Los Morales 19:30 hrs.');
+  const loc=encodeURIComponent('Parroquia San Pedro Apóstol, Monterrey');
+  const dates='20270607T230000Z/20270608T060000Z';
+  document.getElementById('gcal').href=
+    `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${loc}`;
+})();
+
+// RSVP
+document.getElementById('rsvpBtn').addEventListener('click',()=>{
+  const name=document.getElementById('rName').value.trim()||'Invitado';
+  const assist=document.getElementById('rAssist').value;
+  const guests=document.getElementById('rGuests').value||'1';
+  const msg=document.getElementById('rMsg').value.trim();
+  const text=`Hola! Soy ${name}. ${assist}. Invitados: ${guests}. ${msg?'Mensaje: '+msg:''}`;
+  const url=`https://wa.me/528112345678?text=${encodeURIComponent(text)}`;
+  window.open(url,'_blank');
+});
+
+// MÚSICA
+const mBtn=document.getElementById('musicBtn');
+const mAudio=document.getElementById('bgMusic');
+let playing=false;
+mBtn.addEventListener('click',()=>{
+  if(!playing){mAudio.play().catch(()=>{});playing=true;mBtn.style.background='var(--accent-dark)';}
+  else{mAudio.pause();playing=false;mBtn.style.background='var(--accent)';}
+});
+</script>
+</body>
+</html>
