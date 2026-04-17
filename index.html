@@ -91,9 +91,25 @@ body{
   transform:translateY(30px);opacity:0;
 }
 .hero-sub{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:18px;letter-spacing:3px;color:var(--text);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
   transform:translateY(16px);opacity:0;
+}
+.xv-num{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:68px;letter-spacing:12px;line-height:1;
+  background:linear-gradient(135deg,#1E4080 0%,#4A7AB5 45%,#1E4080 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  position:relative;display:inline-block;
+}
+.xv-num::after{
+  content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+  width:50px;height:1px;background:var(--accent);opacity:.55;
+}
+.xv-anos{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:18px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--text);margin-top:10px;
 }
 
 /* ── ORNAMENTO ── */
@@ -269,21 +285,21 @@ section{padding:64px 26px;}
 /* ── MESA DE REGALOS ── */
 .gift-grid{display:flex;flex-direction:column;gap:16px;}
 .gift-card{
-  background:var(--card);border-radius:18px;padding:22px 20px;
+  background:var(--card);border-radius:18px;padding:22px 22px;
   box-shadow:0 6px 36px rgba(30,64,128,.08);
-  display:flex;align-items:center;gap:16px;
+  display:flex;align-items:center;gap:18px;
 }
-.gift-icon{
-  width:52px;height:52px;border-radius:14px;flex-shrink:0;
+.gift-logo-wrap{
+  width:64px;height:64px;border-radius:14px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:24px;
+  overflow:hidden;
 }
-.gift-icon.amazon{background:#FF9900;}
-.gift-icon.liverpool{background:#CC0033;}
-.gift-icon.bank{background:var(--dark);}
+.gift-logo-wrap.amazon{background:#FF9900;}
+.gift-logo-wrap.liverpool{background:#CC0033;}
+.gift-logo-wrap.bank{background:var(--dark);}
 .gift-body{flex:1;min-width:0;}
 .gift-body .gb-name{
-  font-family:'Cormorant Garamond',serif;font-size:17px;
+  font-family:'Cormorant Garamond',serif;font-size:18px;
   color:var(--dark);font-weight:500;margin-bottom:2px;
 }
 .gift-body .gb-desc{
@@ -293,28 +309,27 @@ section{padding:64px 26px;}
 .gift-body .gb-account{
   font-family:'Lato',sans-serif;font-size:13px;
   color:var(--text);margin-top:6px;letter-spacing:1px;
-  word-break:break-all;
 }
 .btn-copy{
   display:inline-flex;align-items:center;gap:6px;
-  margin-top:8px;padding:8px 16px;
+  margin-top:10px;padding:9px 18px;
   background:var(--surface);color:var(--dark);border-radius:20px;
   font-family:'Cormorant Garamond',serif;font-size:11px;
   text-transform:uppercase;letter-spacing:2px;
   border:1px solid rgba(74,122,181,.3);cursor:pointer;
-  transition:background .2s;
+  transition:background .25s,color .25s;
 }
-.btn-copy:hover{background:var(--accent);color:#fff;}
+.btn-copy:hover{background:var(--accent);color:#fff;border-color:transparent;}
 .btn-gift-link{
   display:inline-flex;align-items:center;gap:6px;
-  margin-top:8px;padding:8px 18px;
+  margin-top:10px;padding:9px 20px;
   background:var(--accent);color:#fff;border-radius:20px;
   font-family:'Cormorant Garamond',serif;font-size:11px;
   text-transform:uppercase;letter-spacing:2px;
   text-decoration:none;border:none;cursor:pointer;
-  transition:background .3s;
+  transition:background .3s,transform .3s;
 }
-.btn-gift-link:hover{background:var(--dark);}
+.btn-gift-link:hover{background:var(--dark);transform:translateY(-2px);}
 
 /* ── RSVP ── */
 .rsvp-card{background:var(--card);border-radius:18px;padding:28px 22px;box-shadow:0 6px 36px rgba(30,64,128,.08);}
@@ -386,9 +401,12 @@ footer .fd{
     <div class="hero-bg"></div>
     <div class="hero-veil"></div>
     <div class="hero-bottom">
-      <div class="hero-eyebrow" id="hEy">07 · Junio · MMXXVII · Monterrey</div>
+      <div class="hero-eyebrow" id="hEy">07 · Junio · MMXXVII</div>
       <h1 class="hero-name" id="hNm">Renata</h1>
-      <div class="hero-sub" id="hSb">Sus XV Años</div>
+      <div class="hero-sub" id="hSb">
+        <span class="xv-num">XV</span>
+        <span class="xv-anos">Años</span>
+      </div>
     </div>
   </section>
 
@@ -408,7 +426,6 @@ footer .fd{
 
   <!-- COUNTDOWN -->
   <section id="scd" class="rv">
-    <div class="eyebrow">Faltan</div>
     <h2 class="sec-title">Cuenta Regresiva</h2>
     <div class="cd-row">
       <div class="cd-box"><div class="cd-num" id="cdD">000</div><div class="cd-lbl">Días</div></div>
@@ -433,7 +450,6 @@ footer .fd{
 
   <!-- UBICACIÓN -->
   <section id="subic">
-    <div class="eyebrow">Cuándo y Dónde</div>
     <h2 class="sec-title rv">Ubicación</h2>
     <div class="loc-card rv" id="lc1">
       <div class="lt">Ceremonia</div>
@@ -536,10 +552,10 @@ footer .fd{
     <h2 class="sec-title">Dress Code</h2>
     <div class="dc-note">Formal · Colores Pastel</div>
     <div class="swatches" id="swatches">
-      <div class="sw"><div class="dot" style="background:#E8B4B8;"></div><div class="lbl">Rosa palo</div></div>
-      <div class="sw"><div class="dot" style="background:#F2C4A0;"></div><div class="lbl">Durazno</div></div>
-      <div class="sw"><div class="dot" style="background:#C4B5D4;"></div><div class="lbl">Lavanda</div></div>
-      <div class="sw"><div class="dot" style="background:#B5D4C4;"></div><div class="lbl">Menta</div></div>
+      <div class="sw"><div class="dot" style="background:#1C1C1C;"></div><div class="lbl">Negro</div></div>
+      <div class="sw"><div class="dot" style="background:#D4B896;"></div><div class="lbl">Champagne</div></div>
+      <div class="sw"><div class="dot" style="background:#7B2D40;"></div><div class="lbl">Vino</div></div>
+      <div class="sw"><div class="dot" style="background:#8B6B4A;"></div><div class="lbl">Tostado</div></div>
     </div>
   </section>
 
@@ -631,8 +647,13 @@ footer .fd{
 
       <!-- Amazon -->
       <div class="gift-card rv">
-        <div class="gift-icon amazon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.076-1.047-.872-1.234-1.276-1.814-2.108-1.732 1.767-2.958 2.296-5.205 2.296-2.657 0-4.724-1.641-4.724-4.924 0-2.565 1.389-4.309 3.371-5.164 1.718-.76 4.118-.895 5.954-1.105v-.41c0-.753.058-1.642-.383-2.292-.383-.578-1.124-.818-1.776-.818-1.206 0-2.278.619-2.541 1.905-.054.285-.261.567-.547.582l-3.063-.333c-.259-.056-.545-.267-.471-.663.703-3.71 4.057-4.831 7.063-4.831 1.537 0 3.547.41 4.758 1.574 1.537 1.436 1.39 3.352 1.39 5.438v4.926c0 1.482.615 2.132 1.194 2.932.204.285.249.628-.011.839l-2.451 2.08z"/></svg>
+        <div class="gift-logo-wrap amazon">
+          <!-- Amazon logo: wordmark + smile arrow -->
+          <svg width="52" height="32" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="22" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#fff">amazon</text>
+            <path d="M10 30 Q55 42 100 30" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M96 26 L100 30 L96 34" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         <div class="gift-body">
           <div class="gb-name">Amazon</div>
@@ -643,8 +664,11 @@ footer .fd{
 
       <!-- Liverpool -->
       <div class="gift-card rv">
-        <div class="gift-icon liverpool">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <div class="gift-logo-wrap liverpool">
+          <!-- Liverpool logo: texto bold -->
+          <svg width="62" height="28" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="28" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="#fff" letter-spacing="1">LIVERPOOL</text>
+          </svg>
         </div>
         <div class="gift-body">
           <div class="gb-name">Liverpool</div>
@@ -655,8 +679,8 @@ footer .fd{
 
       <!-- Número de cuenta -->
       <div class="gift-card rv">
-        <div class="gift-icon bank">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M11.5 2L2 7v2h20V7L11.5 2zm-7 9v8H7v-8H4.5zm4.5 0v8h2v-8H9zm4 0v8h2v-8h-2zm4.5 0v8H19v-8h-1.5zM2 21v2h20v-2H2z"/></svg>
+        <div class="gift-logo-wrap bank">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="#fff"><path d="M11.5 2L2 7v2h20V7L11.5 2zm-7 9v8H7v-8H4.5zm4.5 0v8h2v-8H9zm4 0v8h2v-8h-2zm4.5 0v8H19v-8h-1.5zM2 21v2h20v-2H2z"/></svg>
         </div>
         <div class="gift-body">
           <div class="gb-name">Transferencia</div>
