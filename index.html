@@ -6,543 +6,543 @@
 <title>Renata · Mis XV Años · 07 Junio 2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{overflow-x:hidden;}
-:root{
-  --bg:#FAF7F2;
-  --accent:#9E7B65;
-  --accent-dark:#7A5B48;
-  --text:#2C1F18;
-  --surface:#F2EBE0;
-  --rose:#E8B4B8;
-  --peach:#F2C4A0;
-  --lavender:#C4B5D4;
-  --mint:#B5D4C4;
-}
+html{scroll-behavior:smooth;}
 body{
-  font-family:'Lato',sans-serif;
-  font-weight:300;
-  font-size:13px;
-  color:var(--text);
-  background:var(--bg);
-  line-height:1.7;
-  overflow-x:hidden;
+  font-family:'Lato',sans-serif;font-weight:300;font-size:13px;
+  color:#2C1F18;background:#FAF7F2;line-height:1.7;overflow-x:hidden;
 }
-.wrap{max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
+:root{
+  --bg:#FAF7F2;--accent:#9E7B65;--dark:#7A5B48;
+  --text:#2C1F18;--surface:#F2EBE0;
+  --rose:#E8B4B8;--peach:#F2C4A0;--lavender:#C4B5D4;--mint:#B5D4C4;
+}
+.wrap{max-width:430px;margin:0 auto;background:var(--bg);position:relative;}
 
-/* LOADER */
+/* ── LOADER ──────────────────────────────── */
 #loader{
-  position:fixed;inset:0;background:var(--bg);z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity 1s ease;
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:18px;
 }
-#loader.gone{opacity:0;pointer-events:none;}
+#loader.gone{opacity:0;pointer-events:none;transition:opacity 1.2s ease;}
 #loader .name{
-  font-family:'Great Vibes',cursive;
-  font-size:72px;color:var(--accent);
-  display:flex;gap:2px;
+  font-family:'Great Vibes',cursive;font-size:80px;color:var(--accent);
+  display:flex;gap:1px;
 }
-#loader .name span{opacity:0;display:inline-block;transform:translateY(20px);}
+#loader .name span{opacity:0;display:inline-block;transform:translateY(24px);}
+#loader .tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:13px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--accent);opacity:0;
+}
 
-/* HERO */
-.hero{
-  position:relative;height:100vh;min-height:640px;max-height:900px;
-  overflow:hidden;background:var(--bg);
+/* ── PÉTALOS GLOBALES (fixed, toda la página) ────────────── */
+#petal-layer{
+  position:fixed;inset:0;pointer-events:none;z-index:997;overflow:hidden;
 }
-.hero-img{
-  position:absolute;inset:0;
-  background-image:url('https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=860&q=80');
-  background-size:cover;background-position:center;
-  height:70%;
-}
-.hero-overlay{
-  position:absolute;left:0;right:0;top:55%;bottom:0;
-  background:linear-gradient(180deg,
-    rgba(250,247,242,0) 0%,
-    rgba(250,247,242,0.6) 35%,
-    rgba(250,247,242,0.95) 70%,
-    var(--bg) 100%);
-}
-.hero-content{
-  position:absolute;left:0;right:0;bottom:60px;
-  text-align:center;padding:0 30px;
-  z-index:3;
-}
-.hero-sub{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:14px;
-  text-transform:uppercase;
-  letter-spacing:4px;
-  color:var(--accent);
-  margin-bottom:6px;
+.gp{
+  position:absolute;top:-30px;
+  border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;
   opacity:0;
+}
+
+/* ── HERO ────────────────────────────────── */
+.hero{
+  position:relative;width:100%;min-height:100svh;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.hero-photo{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-F8TB1rn6eFw?w=860&q=85') center top / cover no-repeat;
+}
+/* overlay acuarela desde abajo + suave en los costados */
+.hero-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(250,247,242,0) 0%,
+    rgba(250,247,242,0) 45%,
+    rgba(250,247,242,0.55) 62%,
+    rgba(250,247,242,0.92) 80%,
+    var(--bg) 100%
+  );
+}
+.hero-body{
+  position:relative;z-index:3;
+  margin-top:auto;
+  padding:0 28px 52px;
+  text-align:center;
+}
+.hero-eyebrow{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:13px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;opacity:0;
 }
 .hero-name{
-  font-family:'Great Vibes',cursive;
-  font-size:96px;
-  color:var(--accent-dark);
-  line-height:1;
-  margin-bottom:4px;
-  opacity:0;
+  font-family:'Great Vibes',cursive;font-size:100px;line-height:.95;
+  color:var(--dark);margin-bottom:10px;opacity:0;
+  text-shadow:0 2px 24px rgba(122,91,72,.18);
 }
-.hero-subtitle{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:18px;
-  color:var(--text);
-  letter-spacing:2px;
-  opacity:0;
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:18px;letter-spacing:3px;color:var(--text);opacity:0;
 }
 .date-badge{
-  position:absolute;
-  right:20px;bottom:20px;
-  width:110px;height:110px;
-  border:1px solid var(--accent);
-  border-radius:50%;
+  position:absolute;right:22px;bottom:22px;z-index:4;
+  width:104px;height:104px;border-radius:50%;
+  border:1.5px solid var(--accent);
+  background:rgba(250,247,242,.82);backdrop-filter:blur(6px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:rgba(250,247,242,0.85);
-  backdrop-filter:blur(4px);
-  z-index:4;
-  opacity:0;
+  gap:1px;opacity:0;
 }
-.date-badge .d{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
-.date-badge .n{font-family:'Great Vibes',cursive;font-size:32px;color:var(--accent-dark);line-height:1;margin:2px 0;}
-.date-badge .y{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--accent);}
+.date-badge .dl{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+.date-badge .dn{font-family:'Great Vibes',cursive;font-size:30px;color:var(--dark);line-height:1;}
+.date-badge .dy{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;color:var(--accent);}
 
-/* PÉTALOS */
-.petals{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2;}
-.petal{
-  position:absolute;
-  width:10px;height:14px;
-  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
-  opacity:0.65;
-  top:-20px;
-}
+/* ── ORNAMENT SVG ─────────────────────────── */
+.orn{display:flex;justify-content:center;padding:8px 0 4px;}
+.orn svg{width:130px;height:32px;}
 
-/* SECTION */
-section{padding:70px 28px;position:relative;}
+/* ── SECCIONES ──────────────────────────── */
+section{padding:60px 26px;}
 .eyebrow{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:14px;
-  text-transform:uppercase;
-  letter-spacing:4px;
-  color:var(--accent);
-  text-align:center;
-  margin-bottom:10px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:13px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin-bottom:8px;
 }
-.title{
-  font-family:'Great Vibes',cursive;
-  font-size:48px;
-  color:var(--accent-dark);
-  text-align:center;
-  line-height:1.1;
-  margin-bottom:30px;
+.sec-title{
+  font-family:'Great Vibes',cursive;font-size:50px;
+  color:var(--dark);text-align:center;line-height:1.1;margin-bottom:28px;
 }
 
-/* ORNAMENT */
-.ornament{
-  display:flex;justify-content:center;align-items:center;
-  margin:0 auto;padding:16px 0;
-}
-.ornament svg{width:120px;height:30px;opacity:0.5;}
-
-/* COUNTDOWN */
-.countdown{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:10px;margin-top:20px;
-}
+/* ── COUNTDOWN ──────────────────────────── */
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
 .cd-box{
-  background:#fff;border-radius:12px;
-  padding:18px 6px;text-align:center;
-  box-shadow:0 4px 32px rgba(0,0,0,0.06);
+  background:#fff;border-radius:14px;padding:20px 4px;text-align:center;
+  box-shadow:0 6px 36px rgba(0,0,0,.06);
 }
-.cd-box .num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:38px;color:var(--accent-dark);line-height:1;
-  font-weight:500;
+.cd-num{
+  font-family:'Cormorant Garamond',serif;font-size:40px;
+  color:var(--dark);line-height:1;font-weight:500;
 }
-.cd-box .lbl{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:11px;text-transform:uppercase;letter-spacing:2px;
+.cd-lbl{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
   color:var(--accent);margin-top:6px;
 }
 
-/* CARD UBICACIÓN */
+/* ── UBICACIÓN ──────────────────────────── */
 .loc-card{
-  background:rgba(255,255,255,0.9);
-  border-radius:16px;
-  padding:26px 22px;
-  box-shadow:0 4px 32px rgba(0,0,0,0.06);
-  margin-bottom:20px;
-  text-align:center;
+  background:#fff;border-radius:18px;padding:28px 22px;
+  box-shadow:0 6px 36px rgba(0,0,0,.06);margin-bottom:18px;text-align:center;
 }
-.loc-card h3{
-  font-family:'Great Vibes',cursive;
-  font-size:34px;color:var(--accent-dark);
-  margin-bottom:4px;
-}
-.loc-card .sub{
+.loc-card .lc-title{font-family:'Great Vibes',cursive;font-size:36px;color:var(--dark);margin-bottom:4px;}
+.loc-card .lc-sub{
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;
   color:var(--accent);margin-bottom:14px;
 }
-.loc-card p{margin:4px 0;font-size:13px;}
-.loc-card .hour{
-  font-family:'Cormorant Garamond',serif;
-  font-size:20px;color:var(--accent-dark);margin-top:8px;letter-spacing:2px;
+.loc-card p{font-size:13px;margin:3px 0;}
+.loc-card .lc-hora{
+  font-family:'Cormorant Garamond',serif;font-size:22px;
+  color:var(--dark);letter-spacing:3px;margin-top:10px;
 }
 .btn{
-  display:inline-block;
-  margin-top:16px;padding:12px 28px;
-  background:var(--accent);color:#fff;
-  border-radius:30px;
-  font-family:'Cormorant Garamond',serif;
-  text-transform:uppercase;letter-spacing:3px;font-size:11px;
-  text-decoration:none;
-  transition:all .3s;border:none;cursor:pointer;
+  display:inline-block;margin-top:16px;padding:12px 30px;
+  background:var(--accent);color:#fff;border-radius:30px;
+  font-family:'Cormorant Garamond',serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:3px;text-decoration:none;
+  transition:background .3s,transform .3s;border:none;cursor:pointer;
 }
-.btn:hover{background:var(--accent-dark);}
-.btn-outline{background:transparent;color:var(--accent-dark);border:1px solid var(--accent);}
-.btn-full{display:block;width:100%;text-align:center;}
+.btn:hover{background:var(--dark);transform:translateY(-2px);}
 
-/* CALENDAR */
-.cal-wrap{text-align:center;}
+/* ── CALENDAR ──────────────────────────── */
+.cal-center{text-align:center;}
+.cal-center p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:16px;color:var(--dark);margin-bottom:18px;
+}
 
-/* ITINERARIO */
-.timeline{position:relative;padding-left:36px;margin-top:10px;}
+/* ── ITINERARIO ─────────────────────────── */
+.timeline{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:0;
+  padding-top:10px;
+}
 .timeline::before{
-  content:'';position:absolute;left:10px;top:6px;bottom:6px;width:1px;
+  content:'';position:absolute;top:0;bottom:0;left:50%;
+  transform:translateX(-50%);width:1px;
   background:linear-gradient(to bottom,transparent,var(--accent),transparent);
-  opacity:0.5;
+  opacity:.4;
 }
-.t-item{position:relative;margin-bottom:26px;}
-.t-item::before{
-  content:'';position:absolute;left:-32px;top:4px;
+.t-item{
+  position:relative;width:100%;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:16px 0;opacity:0;
+}
+.t-dot{
   width:12px;height:12px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--accent);
+  background:var(--bg);border:2.5px solid var(--accent);
+  margin-bottom:10px;
 }
-.t-item .time{
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px;color:var(--accent-dark);
-  letter-spacing:2px;
+.t-time{
+  font-family:'Cormorant Garamond',serif;font-size:24px;
+  color:var(--dark);letter-spacing:3px;line-height:1;
 }
-.t-item .evt{
-  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--text);margin-top:2px;
+.t-evt{
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--text);margin-top:4px;
 }
 
-/* DRESS CODE */
-.dc-note{text-align:center;margin-bottom:20px;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--accent-dark);letter-spacing:3px;text-transform:uppercase;}
-.swatches{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px;}
+/* ── DRESS CODE ─────────────────────────── */
+.dc-note{
+  text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:17px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dark);margin-bottom:26px;
+}
+.swatches{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;}
 .sw{text-align:center;}
 .sw .dot{
-  width:64px;height:64px;border-radius:50%;
-  box-shadow:0 6px 20px rgba(0,0,0,0.10);
-  margin:0 auto 8px;
-  border:2px solid rgba(255,255,255,0.6);
+  width:66px;height:66px;border-radius:50%;margin:0 auto 10px;
+  box-shadow:0 8px 24px rgba(0,0,0,.12);border:2px solid rgba(255,255,255,.7);
 }
 .sw .lbl{
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:11px;letter-spacing:2px;color:var(--accent);
-  text-transform:uppercase;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);
 }
 
-/* FAMILIA */
-.fam{display:flex;flex-direction:column;gap:24px;text-align:center;}
-.fam-group .role{
+/* ── FAMILIA ─────────────────────────────── */
+.fam{display:flex;flex-direction:column;gap:26px;align-items:center;text-align:center;}
+.fam-g .role{
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  font-size:12px;letter-spacing:4px;text-transform:uppercase;
   color:var(--accent);margin-bottom:8px;
 }
-.fam-group .names{
+.fam-g .names{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--dark);line-height:1.65;}
+.flor{
   font-family:'Cormorant Garamond',serif;font-size:18px;
-  color:var(--accent-dark);line-height:1.6;
+  color:var(--accent);opacity:.5;letter-spacing:10px;
 }
-.flor-sep{text-align:center;color:var(--accent);opacity:0.5;font-size:14px;letter-spacing:8px;}
 
-/* GALERÍA */
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.gallery img{
-  width:100%;height:160px;object-fit:cover;
-  border-radius:12px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.06);
-  transition:transform .4s ease, box-shadow .4s ease;
+/* ── GALERÍA — marquee elegante ─────────── */
+.gallery-wrap{overflow:hidden;padding:0 0 6px;}
+.gallery-row{display:flex;gap:14px;will-change:transform;}
+.gallery-row + .gallery-row{margin-top:14px;}
+.gallery-row img{
+  width:180px;height:220px;object-fit:cover;object-position:top;
+  border-radius:14px;flex-shrink:0;
+  box-shadow:0 8px 28px rgba(0,0,0,.10);
+  transition:transform .5s ease,box-shadow .5s ease;
 }
-.gallery img:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.12);}
+.gallery-row img:hover{transform:scale(1.03);box-shadow:0 12px 36px rgba(0,0,0,.18);}
 
-/* RSVP */
-.rsvp-card{
-  background:rgba(255,255,255,0.9);
-  border-radius:16px;padding:26px 22px;
-  box-shadow:0 4px 32px rgba(0,0,0,0.06);
-}
+/* ── RSVP ───────────────────────────────── */
+.rsvp-card{background:#fff;border-radius:18px;padding:28px 22px;box-shadow:0 6px 36px rgba(0,0,0,.06);}
 .rsvp-card label{
-  display:block;
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:12px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--accent);margin:12px 0 6px;
+  display:block;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);margin:14px 0 6px;
 }
+.rsvp-card label:first-of-type{margin-top:0;}
 .rsvp-card input,.rsvp-card select,.rsvp-card textarea{
   width:100%;padding:12px 14px;
-  border:1px solid rgba(158,123,101,0.3);
-  border-radius:10px;background:#fff;
-  font-family:'Lato',sans-serif;font-size:13px;color:var(--text);
-  outline:none;transition:border-color .3s;
+  border:1px solid rgba(158,123,101,.25);border-radius:10px;
+  background:#fafafa;font-family:'Lato',sans-serif;
+  font-size:13px;color:var(--text);outline:none;
+  transition:border-color .3s;
 }
 .rsvp-card input:focus,.rsvp-card select:focus,.rsvp-card textarea:focus{border-color:var(--accent);}
-.btn-whats{
-  background:#25D366;color:#fff;width:100%;
-  margin-top:18px;padding:14px;
-  border-radius:30px;border:none;cursor:pointer;
-  font-family:'Cormorant Garamond',serif;
-  text-transform:uppercase;letter-spacing:3px;font-size:12px;
+.btn-wa{
   display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;margin-top:20px;padding:15px;
+  background:#25D366;color:#fff;border-radius:30px;border:none;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;font-size:12px;
+  text-transform:uppercase;letter-spacing:3px;
+  transition:background .3s,transform .3s;
 }
+.btn-wa:hover{background:#1da851;transform:translateY(-2px);}
 
-/* MÚSICA */
-.music-btn{
-  position:fixed;bottom:22px;right:22px;
-  width:54px;height:54px;border-radius:50%;
+/* ── FOOTER ──────────────────────────────── */
+footer{padding:50px 20px;text-align:center;}
+footer .fn{font-family:'Great Vibes',cursive;font-size:50px;color:var(--dark);}
+footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-top:6px;}
+
+/* ── BOTÓN MÚSICA ────────────────────────── */
+.music-fab{
+  position:fixed;bottom:24px;right:24px;z-index:998;
+  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
   background:var(--accent);color:#fff;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(158,123,101,0.5);
-  z-index:999;cursor:pointer;border:none;
-  animation:pulse 2.4s infinite ease-out;
+  box-shadow:0 4px 20px rgba(158,123,101,.45);
+  animation:fabPulse 2.8s infinite ease-out;
 }
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(158,123,101,0.5);}
+.music-fab svg{width:24px;height:24px;}
+@keyframes fabPulse{
+  0%{box-shadow:0 0 0 0 rgba(158,123,101,.5);}
   70%{box-shadow:0 0 0 18px rgba(158,123,101,0);}
   100%{box-shadow:0 0 0 0 rgba(158,123,101,0);}
 }
-.music-btn svg{width:22px;height:22px;}
 
-/* FOOTER */
-footer{padding:40px 20px;text-align:center;}
-footer .name-f{font-family:'Great Vibes',cursive;font-size:42px;color:var(--accent-dark);}
-footer .date-f{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-top:4px;}
-
-.center{text-align:center;}
+/* Util */
+.reveal{opacity:0;}
 </style>
 </head>
 <body>
 
+<!-- LOADER -->
 <div id="loader">
   <div class="name" id="loaderName"></div>
+  <div class="tagline" id="loaderTag">Sus XV Años · 07 Junio 2027</div>
 </div>
+
+<!-- PÉTALOS GLOBALES -->
+<div id="petal-layer"></div>
 
 <div class="wrap">
 
   <!-- HERO -->
   <section class="hero" style="padding:0;">
-    <div class="hero-img"></div>
-    <div class="hero-overlay"></div>
-    <div class="petals" id="petals"></div>
-    <div class="hero-content">
-      <div class="hero-sub">Mis XV Años</div>
-      <h1 class="hero-name">Renata</h1>
-      <div class="hero-subtitle">Sus XV Años</div>
+    <div class="hero-photo"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-body">
+      <div class="hero-eyebrow" id="hEyebrow">07 · Junio · MMXXVII</div>
+      <h1 class="hero-name" id="hName">Renata</h1>
+      <div class="hero-tagline" id="hTag">Sus XV Años</div>
     </div>
-    <div class="date-badge">
-      <div class="d">07 · Junio</div>
-      <div class="n">MMXXVII</div>
-      <div class="y">2027</div>
+    <div class="date-badge" id="dateBadge">
+      <div class="dl">07 · Junio</div>
+      <div class="dn">MMXXVII</div>
+      <div class="dy">Monterrey</div>
     </div>
   </section>
 
-  <!-- ORNAMENT -->
-  <div class="ornament">
-    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
-      <path d="M5 15 Q30 5, 60 15 T115 15"/>
-      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+  <!-- ORN -->
+  <div class="orn" id="orn0">
+    <svg viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16 Q32 6 65 16 T122 16" stroke="#9E7B65" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="11" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-15 22 11)"/>
+      <ellipse cx="38" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(10 38 20)"/>
+      <ellipse cx="55" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-8 55 10)"/>
+      <ellipse cx="75" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(8 75 20)"/>
+      <ellipse cx="92" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-12 92 10)"/>
+      <ellipse cx="108" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(6 108 20)"/>
+      <circle cx="65" cy="16" r="3" fill="#9E7B65" opacity=".6"/>
     </svg>
   </div>
 
   <!-- COUNTDOWN -->
-  <section class="sec reveal">
-    <div class="eyebrow">Cuenta Regresiva</div>
-    <h2 class="title">Faltan</h2>
-    <div class="countdown">
-      <div class="cd-box"><div class="num" id="cdD">00</div><div class="lbl">Días</div></div>
-      <div class="cd-box"><div class="num" id="cdH">00</div><div class="lbl">Horas</div></div>
-      <div class="cd-box"><div class="num" id="cdM">00</div><div class="lbl">Minutos</div></div>
-      <div class="cd-box"><div class="num" id="cdS">00</div><div class="lbl">Segundos</div></div>
+  <section class="reveal" id="secCd">
+    <div class="eyebrow">Faltan</div>
+    <h2 class="sec-title">Cuenta Regresiva</h2>
+    <div class="cd-grid">
+      <div class="cd-box"><div class="cd-num" id="cdD">000</div><div class="cd-lbl">Días</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Horas</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Minutos</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Segundos</div></div>
     </div>
   </section>
 
-  <div class="ornament">
-    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
-      <path d="M5 15 Q30 5, 60 15 T115 15"/>
-      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+  <div class="orn reveal">
+    <svg viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16 Q32 6 65 16 T122 16" stroke="#9E7B65" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="11" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-15 22 11)"/>
+      <ellipse cx="38" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(10 38 20)"/>
+      <ellipse cx="55" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-8 55 10)"/>
+      <ellipse cx="75" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(8 75 20)"/>
+      <ellipse cx="92" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-12 92 10)"/>
+      <ellipse cx="108" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(6 108 20)"/>
+      <circle cx="65" cy="16" r="3" fill="#9E7B65" opacity=".6"/>
     </svg>
   </div>
 
   <!-- UBICACIÓN -->
-  <section class="sec reveal">
+  <section class="reveal" id="secUbic">
     <div class="eyebrow">Cuándo y Dónde</div>
-    <h2 class="title">Ubicación</h2>
-
-    <div class="loc-card">
-      <h3>Ceremonia</h3>
-      <div class="sub">Misa de Acción de Gracias</div>
+    <h2 class="sec-title">Ubicación</h2>
+    <div class="loc-card" id="cardCerem">
+      <div class="lc-title">Ceremonia</div>
+      <div class="lc-sub">Misa de Acción de Gracias</div>
       <p><strong>Parroquia San Pedro Apóstol</strong></p>
-      <p>Av. Eugenio Garza Sada 3000, Monterrey</p>
-      <div class="hour">17:00 hrs</div>
-      <a class="btn" href="https://maps.app.goo.gl/sanpedro" target="_blank">Cómo llegar</a>
+      <p>Av. Eugenio Garza Sada 3000, Monterrey N.L.</p>
+      <div class="lc-hora">17:00 hrs</div>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Parroquia+San+Pedro+Apostol+Av+Eugenio+Garza+Sada+Monterrey+Nuevo+Leon" target="_blank">Cómo Llegar</a>
     </div>
-
-    <div class="loc-card">
-      <h3>Recepción</h3>
-      <div class="sub">Cena y Fiesta</div>
+    <div class="loc-card" id="cardRecep">
+      <div class="lc-title">Recepción</div>
+      <div class="lc-sub">Cena y Fiesta</div>
       <p><strong>Hacienda Los Morales</strong></p>
-      <p>Río Lerma 222, Monterrey</p>
-      <div class="hour">19:30 hrs</div>
-      <a class="btn" href="https://maps.app.goo.gl/losmorales" target="_blank">Cómo llegar</a>
+      <p>Río Lerma 222, Monterrey N.L.</p>
+      <div class="lc-hora">19:30 hrs</div>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Hacienda+Los+Morales+Rio+Lerma+222+Monterrey+Nuevo+Leon" target="_blank">Cómo Llegar</a>
     </div>
   </section>
 
   <!-- CALENDAR -->
-  <section class="sec reveal cal-wrap">
+  <section class="reveal cal-center" id="secCal">
     <div class="eyebrow">No lo olvides</div>
-    <h2 class="title">Guárdalo</h2>
-    <p style="margin-bottom:10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;">Agrega el evento a tu calendario</p>
-    <a class="btn" id="gcal" href="#" target="_blank">
-      Añadir a Google Calendar
-    </a>
+    <h2 class="sec-title">Guárdalo</h2>
+    <p>Agrega el evento a tu calendario y no faltes</p>
+    <a class="btn" id="gcalBtn" href="#" target="_blank">Añadir a Google Calendar</a>
   </section>
 
-  <div class="ornament">
-    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
-      <path d="M5 15 Q30 5, 60 15 T115 15"/>
-      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+  <div class="orn reveal">
+    <svg viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16 Q32 6 65 16 T122 16" stroke="#9E7B65" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="11" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-15 22 11)"/>
+      <ellipse cx="38" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(10 38 20)"/>
+      <ellipse cx="55" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-8 55 10)"/>
+      <ellipse cx="75" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(8 75 20)"/>
+      <ellipse cx="92" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-12 92 10)"/>
+      <ellipse cx="108" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(6 108 20)"/>
+      <circle cx="65" cy="16" r="3" fill="#9E7B65" opacity=".6"/>
     </svg>
   </div>
 
   <!-- ITINERARIO -->
-  <section class="sec reveal">
-    <div class="eyebrow">Programa</div>
-    <h2 class="title">Itinerario</h2>
+  <section id="secItinerary" style="padding:60px 26px;">
+    <div class="eyebrow">Programa del Día</div>
+    <h2 class="sec-title">Itinerario</h2>
     <div class="timeline">
-      <div class="t-item"><div class="time">16:30</div><div class="evt">Recepción de invitados</div></div>
-      <div class="t-item"><div class="time">17:00</div><div class="evt">Misa de acción de gracias</div></div>
-      <div class="t-item"><div class="time">19:30</div><div class="evt">Vals de honor</div></div>
-      <div class="t-item"><div class="time">20:00</div><div class="evt">Cena y brindis</div></div>
-      <div class="t-item"><div class="time">21:30</div><div class="evt">Fiesta y sorpresas</div></div>
+      <div class="t-item" id="ti0"><div class="t-dot"></div><div class="t-time">16:30</div><div class="t-evt">Recepción de Invitados</div></div>
+      <div class="t-item" id="ti1"><div class="t-dot"></div><div class="t-time">17:00</div><div class="t-evt">Misa de Acción de Gracias</div></div>
+      <div class="t-item" id="ti2"><div class="t-dot"></div><div class="t-time">19:30</div><div class="t-evt">Vals de Honor</div></div>
+      <div class="t-item" id="ti3"><div class="t-dot"></div><div class="t-time">20:00</div><div class="t-evt">Cena y Brindis</div></div>
+      <div class="t-item" id="ti4"><div class="t-dot"></div><div class="t-time">21:30</div><div class="t-evt">Fiesta y Sorpresas</div></div>
     </div>
   </section>
+
+  <div class="orn reveal">
+    <svg viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16 Q32 6 65 16 T122 16" stroke="#9E7B65" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="11" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-15 22 11)"/>
+      <ellipse cx="38" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(10 38 20)"/>
+      <ellipse cx="55" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-8 55 10)"/>
+      <ellipse cx="75" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(8 75 20)"/>
+      <ellipse cx="92" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-12 92 10)"/>
+      <ellipse cx="108" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(6 108 20)"/>
+      <circle cx="65" cy="16" r="3" fill="#9E7B65" opacity=".6"/>
+    </svg>
+  </div>
 
   <!-- DRESS CODE -->
-  <section class="sec reveal">
+  <section class="reveal" id="secDress">
     <div class="eyebrow">Etiqueta</div>
-    <h2 class="title">Dress Code</h2>
-    <div class="dc-note">Formal · Colores pastel</div>
-    <div class="swatches">
-      <div class="sw"><div class="dot" style="background:#E8B4B8"></div><div class="lbl">Rosa palo</div></div>
-      <div class="sw"><div class="dot" style="background:#F2C4A0"></div><div class="lbl">Durazno</div></div>
-      <div class="sw"><div class="dot" style="background:#C4B5D4"></div><div class="lbl">Lavanda</div></div>
-      <div class="sw"><div class="dot" style="background:#B5D4C4"></div><div class="lbl">Menta</div></div>
+    <h2 class="sec-title">Dress Code</h2>
+    <div class="dc-note">Formal · Colores Pastel</div>
+    <div class="swatches" id="swatches">
+      <div class="sw"><div class="dot" style="background:#E8B4B8;"></div><div class="lbl">Rosa palo</div></div>
+      <div class="sw"><div class="dot" style="background:#F2C4A0;"></div><div class="lbl">Durazno</div></div>
+      <div class="sw"><div class="dot" style="background:#C4B5D4;"></div><div class="lbl">Lavanda</div></div>
+      <div class="sw"><div class="dot" style="background:#B5D4C4;"></div><div class="lbl">Menta</div></div>
     </div>
   </section>
 
-  <div class="ornament">
-    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
-      <path d="M5 15 Q30 5, 60 15 T115 15"/>
-      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+  <div class="orn reveal">
+    <svg viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16 Q32 6 65 16 T122 16" stroke="#9E7B65" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="11" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-15 22 11)"/>
+      <ellipse cx="38" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(10 38 20)"/>
+      <ellipse cx="55" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-8 55 10)"/>
+      <ellipse cx="75" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(8 75 20)"/>
+      <ellipse cx="92" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-12 92 10)"/>
+      <ellipse cx="108" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(6 108 20)"/>
+      <circle cx="65" cy="16" r="3" fill="#9E7B65" opacity=".6"/>
     </svg>
   </div>
 
   <!-- FAMILIA -->
-  <section class="sec reveal">
-    <div class="eyebrow">Con la bendición de</div>
-    <h2 class="title">Mi Familia</h2>
+  <section class="reveal" id="secFam">
+    <div class="eyebrow">Con la Bendición de</div>
+    <h2 class="sec-title">Mi Familia</h2>
     <div class="fam">
-      <div class="fam-group">
+      <div class="fam-g">
         <div class="role">Mis Padres</div>
-        <div class="names">Alejandro Morales<br>&<br>Gabriela Ramos de Morales</div>
+        <div class="names">Alejandro Morales<br><span style="font-style:italic;font-size:15px;color:var(--accent);">&amp;</span><br>Gabriela Ramos de Morales</div>
       </div>
-      <div class="flor-sep">❦ ❦ ❦</div>
-      <div class="fam-group">
+      <div class="flor">❦ ❦ ❦</div>
+      <div class="fam-g">
         <div class="role">Padrinos de Corona</div>
-        <div class="names">Roberto Torres<br>&<br>Daniela Vega</div>
+        <div class="names">Roberto Torres<br><span style="font-style:italic;font-size:15px;color:var(--accent);">&amp;</span><br>Daniela Vega</div>
       </div>
-      <div class="flor-sep">❦ ❦ ❦</div>
-      <div class="fam-group">
+      <div class="flor">❦ ❦ ❦</div>
+      <div class="fam-g">
         <div class="role">Padrinos de Vals</div>
-        <div class="names">Marco Salinas<br>&<br>Patricia Herrera</div>
+        <div class="names">Marco Salinas<br><span style="font-style:italic;font-size:15px;color:var(--accent);">&amp;</span><br>Patricia Herrera</div>
       </div>
     </div>
   </section>
 
-  <div class="ornament">
-    <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#9E7B65" stroke-width="1">
-      <path d="M5 15 Q30 5, 60 15 T115 15"/>
-      <ellipse cx="25" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="40" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="70" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="85" cy="18" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <ellipse cx="100" cy="10" rx="4" ry="2" fill="#9E7B65" opacity=".6"/>
-      <circle cx="60" cy="15" r="2.5" fill="#9E7B65"/>
+  <!-- GALERÍA -->
+  <section id="secGal" style="padding:60px 0;">
+    <div class="eyebrow" style="padding:0 26px;">Momentos</div>
+    <h2 class="sec-title reveal" style="padding:0 26px;">Galería</h2>
+    <div class="gallery-wrap" style="padding:0 0 4px;">
+      <!-- Row 1 → izquierda -->
+      <div class="gallery-row" id="grow1">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75" alt="xv1">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=75" alt="xv2">
+        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=75" alt="xv3">
+        <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=75" alt="xv4">
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=75" alt="xv5">
+        <!-- duplicadas para loop infinito -->
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75" alt="xv1b">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=75" alt="xv2b">
+        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=75" alt="xv3b">
+        <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=75" alt="xv4b">
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=75" alt="xv5b">
+      </div>
+      <!-- Row 2 → derecha (invertida) -->
+      <div class="gallery-row" id="grow2">
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=75" alt="xv5c">
+        <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=75" alt="xv4c">
+        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=75" alt="xv3c">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=75" alt="xv2c">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75" alt="xv1c">
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=75" alt="xv5d">
+        <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=75" alt="xv4d">
+        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=75" alt="xv3d">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=75" alt="xv2d">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75" alt="xv1d">
+      </div>
+    </div>
+  </section>
+
+  <div class="orn reveal">
+    <svg viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 16 Q32 6 65 16 T122 16" stroke="#9E7B65" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="11" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-15 22 11)"/>
+      <ellipse cx="38" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(10 38 20)"/>
+      <ellipse cx="55" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-8 55 10)"/>
+      <ellipse cx="75" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(8 75 20)"/>
+      <ellipse cx="92" cy="10" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(-12 92 10)"/>
+      <ellipse cx="108" cy="20" rx="5" ry="2.5" fill="#9E7B65" opacity=".45" transform="rotate(6 108 20)"/>
+      <circle cx="65" cy="16" r="3" fill="#9E7B65" opacity=".6"/>
     </svg>
   </div>
 
-  <!-- GALERÍA -->
-  <section class="sec reveal">
-    <div class="eyebrow">Recuerdos</div>
-    <h2 class="title">Galería</h2>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="foto 1">
-      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=70" alt="foto 2">
-      <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=70" alt="foto 3">
-      <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=400&q=70" alt="foto 4">
-      <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=70" alt="foto 5" style="grid-column:1/-1;height:220px;">
-    </div>
-  </section>
-
   <!-- RSVP -->
-  <section class="sec reveal">
-    <div class="eyebrow">Confirma tu asistencia</div>
-    <h2 class="title">R.S.V.P.</h2>
+  <section class="reveal" id="secRsvp">
+    <div class="eyebrow">Confirma tu Asistencia</div>
+    <h2 class="sec-title">R.S.V.P.</h2>
     <div class="rsvp-card">
-      <label>Tu nombre</label>
-      <input type="text" id="rName" placeholder="Nombre completo">
+      <label>Tu nombre completo</label>
+      <input type="text" id="rName" placeholder="Nombre">
       <label>¿Asistirás?</label>
       <select id="rAssist">
-        <option value="Sí, con gusto asistiré">Sí, con gusto asistiré</option>
-        <option value="Lamento no poder asistir">Lamento no poder asistir</option>
+        <option>Sí, con mucho gusto asistiré</option>
+        <option>Lamento no poder asistir</option>
       </select>
       <label>Número de invitados</label>
-      <input type="number" id="rGuests" min="1" max="5" value="1">
-      <label>Mensaje para Renata</label>
-      <textarea id="rMsg" rows="3" placeholder="Un mensaje de cariño..."></textarea>
-      <button class="btn-whats" id="rsvpBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413"/></svg>
+      <input type="number" id="rGuests" min="1" max="6" value="1">
+      <label>Un mensaje para Renata</label>
+      <textarea id="rMsg" rows="3" placeholder="Escribe tus deseos..."></textarea>
+      <button class="btn-wa" id="rsvpBtn">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413"/></svg>
         Confirmar por WhatsApp
       </button>
     </div>
@@ -550,129 +550,264 @@ footer .date-f{font-family:'Cormorant Garamond',serif;font-style:italic;font-siz
 
   <!-- FOOTER -->
   <footer>
-    <div class="name-f">Renata</div>
-    <div class="date-f">07 · Junio · MMXXVII</div>
+    <div class="fn">Renata</div>
+    <div class="fd">07 · Junio · MMXXVII · Monterrey</div>
   </footer>
 
 </div>
 
 <!-- MÚSICA -->
-<button class="music-btn" id="musicBtn" aria-label="Reproducir música">
+<button class="music-fab" id="musicFab" aria-label="Música">
   <svg viewBox="0 0 24 24" fill="#fff" id="musicIcon"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
 </button>
-<audio id="bgMusic" loop>
+<audio id="bgAudio" loop preload="none">
   <source src="https://audio.jukehost.co.uk/9hKrAnJzrCzXkHc1qMfUuDqxIgTYPvYE" type="audio/mpeg">
 </audio>
 
 <script>
-// LOADER
+/* ══════════════════════════════
+   GSAP SETUP
+══════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+
+/* ══════════════════════════════
+   LOADER — letra por letra
+══════════════════════════════ */
 (function(){
-  const el=document.getElementById('loaderName');
-  const name='Renata';
-  name.split('').forEach(l=>{const s=document.createElement('span');s.textContent=l;el.appendChild(s);});
-  const spans=el.querySelectorAll('span');
-  gsap.to(spans,{opacity:1,y:0,duration:0.6,stagger:0.15,ease:'power2.out',onComplete:()=>{
-    setTimeout(()=>{
-      document.getElementById('loader').classList.add('gone');
-      setTimeout(()=>document.getElementById('loader').remove(),1100);
-      initIntro();
-    },700);
-  }});
-})();
-
-function initIntro(){
-  gsap.to('.hero-sub',{opacity:1,y:0,duration:1,delay:0.1,ease:'power2.out'});
-  gsap.from('.hero-name',{opacity:0,y:20,duration:1.2,delay:0.3,ease:'power2.out'});
-  gsap.to('.hero-name',{opacity:1,duration:1.2,delay:0.3});
-  gsap.to('.hero-subtitle',{opacity:1,duration:1,delay:0.9});
-  gsap.to('.date-badge',{opacity:1,scale:1,duration:1,delay:1.1,ease:'back.out(1.6)'});
-  spawnPetals();
-}
-
-// PÉTALOS
-function spawnPetals(){
-  const container=document.getElementById('petals');
-  const colors=['#E8B4B8','#F2C4A0','#C4B5D4','#B5D4C4','#FAD4D6'];
-  for(let i=0;i<15;i++){
-    const p=document.createElement('div');
-    p.className='petal';
-    p.style.background=colors[i%colors.length];
-    p.style.left=Math.random()*100+'%';
-    container.appendChild(p);
-    animPetal(p);
-  }
-}
-function animPetal(p){
-  const dur=8+Math.random()*8;
-  const rot=360+Math.random()*360;
-  const driftX=(Math.random()*120)-60;
-  gsap.set(p,{y:-20,rotation:Math.random()*360,opacity:0.65});
-  gsap.to(p,{
-    y:window.innerHeight+40,
-    x:driftX,
-    rotation:'+='+rot,
-    duration:dur,
-    ease:'none',
-    onComplete:()=>{
-      gsap.set(p,{x:0,left:Math.random()*100+'%'});
-      animPetal(p);
+  const el = document.getElementById('loaderName');
+  'Renata'.split('').forEach(ch => {
+    const s = document.createElement('span');
+    s.textContent = ch;
+    el.appendChild(s);
+  });
+  const spans = el.querySelectorAll('span');
+  const tl = gsap.timeline({
+    onComplete: () => {
+      setTimeout(() => {
+        gsap.to('#loader', { opacity:0, duration:1.4, ease:'power2.inOut',
+          onComplete: () => { document.getElementById('loader').remove(); }
+        });
+        heroIn();
+      }, 600);
     }
   });
+  tl.to(spans, { opacity:1, y:0, duration:.75, stagger:.14, ease:'power3.out' })
+    .to('#loaderTag', { opacity:1, duration:1, ease:'power2.out' }, '-=0.2');
+})();
+
+/* ══════════════════════════════
+   HERO ENTRANCE
+══════════════════════════════ */
+function heroIn(){
+  const tl = gsap.timeline({ defaults:{ ease:'power2.out' } });
+  tl.to('#hEyebrow', { opacity:1, y:0, duration:1.4, delay:.3 })
+    .from('#hName',   { y:40, duration:1.8, ease:'power3.out' }, '-=1')
+    .to('#hName',     { opacity:1, duration:1.8 }, '<')
+    .to('#hTag',      { opacity:1, duration:1.4 }, '-=1')
+    .to('#dateBadge', { opacity:1, scale:1, duration:1.2, ease:'back.out(1.4)' }, '-=.8');
+  initGlobalPetals();
 }
 
-// COUNTDOWN
-(function(){
-  const target=new Date('2027-06-07T17:00:00-06:00').getTime();
-  function upd(){
-    const now=Date.now();const diff=target-now;
-    if(diff<=0){['cdD','cdH','cdM','cdS'].forEach(id=>document.getElementById(id).textContent='00');return;}
-    const d=Math.floor(diff/86400000);
-    const h=Math.floor(diff%86400000/3600000);
-    const m=Math.floor(diff%3600000/60000);
-    const s=Math.floor(diff%60000/1000);
-    document.getElementById('cdD').textContent=String(d).padStart(2,'0');
-    document.getElementById('cdH').textContent=String(h).padStart(2,'0');
-    document.getElementById('cdM').textContent=String(m).padStart(2,'0');
-    document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+/* ══════════════════════════════
+   PÉTALOS GLOBALES (toda la página)
+══════════════════════════════ */
+function initGlobalPetals(){
+  const layer  = document.getElementById('petal-layer');
+  const colors = ['#E8B4B8','#F2C4A0','#C4B5D4','#B5D4C4','#F9D4D6','#EDD4F0'];
+  const COUNT  = 30;
+  for(let i = 0; i < COUNT; i++){
+    const p = document.createElement('div');
+    p.className = 'gp';
+    const w = 7 + Math.random()*8;
+    p.style.cssText = `
+      width:${w}px;height:${w*1.45}px;
+      background:${colors[i % colors.length]};
+      left:${Math.random()*100}%;
+    `;
+    layer.appendChild(p);
+    dropPetal(p);
   }
-  upd();setInterval(upd,1000);
-})();
+}
 
-// REVEAL
-gsap.registerPlugin(ScrollTrigger);
-document.querySelectorAll('.reveal').forEach(sec=>{
-  gsap.from(sec,{y:30,opacity:0,duration:0.9,ease:'power2.out',
-    scrollTrigger:{trigger:sec,start:'top 85%'}});
-});
+function dropPetal(p){
+  const viewH = window.innerHeight;
+  const dur   = 18 + Math.random()*18;    // 18–36 s (muy lento)
+  const driftX = (Math.random()*100) - 50;
+  const spin   = 200 + Math.random()*400;
+  const startDelay = Math.random() * 14;
+  gsap.set(p, { y:-30, x:0, opacity:0, rotation: Math.random()*360 });
+  gsap.timeline({ delay: startDelay })
+    .to(p, { opacity:.55, duration:2, ease:'none' })
+    .to(p, {
+      y: viewH + 60,
+      x: driftX,
+      rotation: `+=${spin}`,
+      duration: dur,
+      ease: 'none',
+      onComplete: () => {
+        gsap.set(p, { left: Math.random()*100+'%', x:0 });
+        dropPetal(p);
+      }
+    }, '<');
+}
 
-// GOOGLE CALENDAR
+/* ══════════════════════════════
+   COUNTDOWN
+══════════════════════════════ */
 (function(){
-  const title=encodeURIComponent('XV Años de Renata');
-  const details=encodeURIComponent('Ceremonia: Parroquia San Pedro Apóstol 17:00 hrs. Recepción: Hacienda Los Morales 19:30 hrs.');
-  const loc=encodeURIComponent('Parroquia San Pedro Apóstol, Monterrey');
-  const dates='20270607T230000Z/20270608T060000Z';
-  document.getElementById('gcal').href=
-    `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${loc}`;
+  const target = new Date('2027-06-07T17:00:00-06:00').getTime();
+  function tick(){
+    const diff = target - Date.now();
+    if(diff <= 0){ ['cdD','cdH','cdM','cdS'].forEach(id=>document.getElementById(id).textContent='00'); return; }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff%86400000/3600000);
+    const m = Math.floor(diff%3600000/60000);
+    const s = Math.floor(diff%60000/1000);
+    document.getElementById('cdD').textContent = String(d).padStart(3,'0');
+    document.getElementById('cdH').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdM').textContent = String(m).padStart(2,'0');
+    document.getElementById('cdS').textContent = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
 })();
 
-// RSVP
-document.getElementById('rsvpBtn').addEventListener('click',()=>{
-  const name=document.getElementById('rName').value.trim()||'Invitado';
-  const assist=document.getElementById('rAssist').value;
-  const guests=document.getElementById('rGuests').value||'1';
-  const msg=document.getElementById('rMsg').value.trim();
-  const text=`Hola! Soy ${name}. ${assist}. Invitados: ${guests}. ${msg?'Mensaje: '+msg:''}`;
-  const url=`https://wa.me/528112345678?text=${encodeURIComponent(text)}`;
-  window.open(url,'_blank');
+/* ══════════════════════════════
+   SCROLL REVEALS (más lentos)
+══════════════════════════════ */
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.from(el, {
+    y: 40, opacity:0, duration:1.4, ease:'power2.out',
+    scrollTrigger:{ trigger:el, start:'top 87%' }
+  });
 });
 
-// MÚSICA
-const mBtn=document.getElementById('musicBtn');
-const mAudio=document.getElementById('bgMusic');
-let playing=false;
-mBtn.addEventListener('click',()=>{
-  if(!playing){mAudio.play().catch(()=>{});playing=true;mBtn.style.background='var(--accent-dark)';}
-  else{mAudio.pause();playing=false;mBtn.style.background='var(--accent)';}
+/* ══════════════════════════════
+   ITINERARIO ANIMADO
+══════════════════════════════ */
+gsap.from('#secItinerary .eyebrow, #secItinerary .sec-title', {
+  y:30, opacity:0, duration:1.4, stagger:.2, ease:'power2.out',
+  scrollTrigger:{ trigger:'#secItinerary', start:'top 82%' }
+});
+document.querySelectorAll('.t-item').forEach((item, i) => {
+  gsap.to(item, {
+    opacity:1, y:0, duration:1.2,
+    ease:'power2.out',
+    delay: i * 0.2,
+    scrollTrigger:{ trigger:'#secItinerary', start:'top 75%' }
+  });
+  gsap.from(item, {
+    y:25, duration:1.2, ease:'power2.out',
+    delay: i * 0.2,
+    scrollTrigger:{ trigger:'#secItinerary', start:'top 75%' }
+  });
+});
+
+/* ══════════════════════════════
+   SWATCHES — spring
+══════════════════════════════ */
+ScrollTrigger.create({
+  trigger:'#secDress', start:'top 80%',
+  onEnter:() => {
+    gsap.from('#swatches .dot', {
+      scale:0, opacity:0, duration:1.0, stagger:.18,
+      ease:'back.out(2)'
+    });
+  }
+});
+
+/* ══════════════════════════════
+   TARJETAS UBICACIÓN — stagger
+══════════════════════════════ */
+gsap.from(['#cardCerem','#cardRecep'], {
+  y:50, opacity:0, duration:1.3, stagger:.25, ease:'power2.out',
+  scrollTrigger:{ trigger:'#secUbic', start:'top 80%' }
+});
+
+/* ══════════════════════════════
+   FAMILIA STAGGER
+══════════════════════════════ */
+gsap.from('#secFam .fam-g, #secFam .flor', {
+  y:30, opacity:0, duration:1.2, stagger:.22, ease:'power2.out',
+  scrollTrigger:{ trigger:'#secFam', start:'top 82%' }
+});
+
+/* ══════════════════════════════
+   GALERÍA — infinite marquee GSAP
+══════════════════════════════ */
+function initMarquee(){
+  const r1 = document.getElementById('grow1');
+  const r2 = document.getElementById('grow2');
+  const imgW = 180 + 14; // width + gap
+  const total = imgW * 5; // 5 originales
+
+  // Row 1 → hacia la izquierda
+  const tween1 = gsap.to(r1, {
+    x: -total,
+    duration: 38,
+    ease: 'none',
+    repeat: -1,
+    modifiers:{ x: gsap.utils.unitize(v => parseFloat(v) % -total) }
+  });
+  // Row 2 → hacia la derecha
+  const tween2 = gsap.fromTo(r2,
+    { x: -total },
+    {
+      x: 0,
+      duration: 42,
+      ease: 'none',
+      repeat: -1,
+      modifiers:{ x: gsap.utils.unitize(v => parseFloat(v) % total) }
+    }
+  );
+
+  // Pausa en hover
+  const wrap = document.getElementById('secGal');
+  wrap.addEventListener('mouseenter', () => { tween1.pause(); tween2.pause(); });
+  wrap.addEventListener('mouseleave', () => { tween1.resume(); tween2.resume(); });
+  wrap.addEventListener('touchstart', () => { tween1.pause(); tween2.pause(); }, {passive:true});
+  wrap.addEventListener('touchend',   () => { setTimeout(()=>{ tween1.resume(); tween2.resume(); }, 2000); }, {passive:true});
+}
+initMarquee();
+
+/* ══════════════════════════════
+   GOOGLE CALENDAR
+══════════════════════════════ */
+(function(){
+  const t = encodeURIComponent('XV Años de Renata');
+  const d = encodeURIComponent('Ceremonia: Parroquia San Pedro Apóstol 17:00 hrs | Recepción: Hacienda Los Morales 19:30 hrs — Monterrey, N.L.');
+  const l = encodeURIComponent('Monterrey, Nuevo León, México');
+  document.getElementById('gcalBtn').href =
+    `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t}&dates=20270607T230000Z/20270608T060000Z&details=${d}&location=${l}`;
+})();
+
+/* ══════════════════════════════
+   RSVP → WHATSAPP
+══════════════════════════════ */
+document.getElementById('rsvpBtn').addEventListener('click', () => {
+  const name   = document.getElementById('rName').value.trim() || 'Invitado/a';
+  const assist = document.getElementById('rAssist').value;
+  const guests = document.getElementById('rGuests').value || '1';
+  const msg    = document.getElementById('rMsg').value.trim();
+  const text   = `¡Hola! Soy ${name}.\n${assist}.\nInvitados: ${guests}${msg ? '\nMensaje: '+msg : ''}`;
+  window.open(`https://wa.me/528112345678?text=${encodeURIComponent(text)}`, '_blank');
+});
+
+/* ══════════════════════════════
+   MÚSICA
+══════════════════════════════ */
+const fab   = document.getElementById('musicFab');
+const audio = document.getElementById('bgAudio');
+let playing = false;
+fab.addEventListener('click', () => {
+  if(!playing){
+    audio.play().catch(()=>{});
+    playing = true;
+    fab.style.background = 'var(--dark)';
+  } else {
+    audio.pause();
+    playing = false;
+    fab.style.background = 'var(--accent)';
+  }
 });
 </script>
 </body>
